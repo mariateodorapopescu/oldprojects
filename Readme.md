@@ -1,8 +1,10 @@
+<i>note that some comments from the source code files are in Romanian language. Moreover, "v0" is the first version and it might not work/</i>
+<br>
 -besides the structure given in the request, I created two others,
 namely one to store a pixel from the image, then one with the actual tree,
 because I didn't know exactly how to go through it without seeing it like a list
 1. read:
--this function reads a ppm file. after declaring the image as a matrix of pixels,
+<br>-this function reads a ppm file. after declaring the image as a matrix of pixels,<br>
 -followed by a series of buffers in which I will read the metadata.
 <br>- open the input file; if he could not open it, close the program
 <br>- read the header next
