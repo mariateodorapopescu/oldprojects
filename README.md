@@ -1,66 +1,62 @@
+<br><br> I decided to write the program mostly static because it was easier for me, especially
+that I did not notice constraints to allocate the data exclusively dynamically.
+<br><br>
 
+Until the actual solving of the tasks, I prepared the data to be processed,
+like this: I read in turn the number of nodes, the number of edges and then the number of deposits,
+then I read the m rows with the start node (u), the arrival node (v) and the cost (w).
+For each read date, we built the adjacency and cost matrices (g
+being the adjacency matrix of the graph, gr being a copy of it and a being the matrix of
+costs, not before being initialized on all positions with 0): for g and gr: on
+line u and column v I put 1 and in a on line u and on column v I put w. After that, I have
+I read each deposit and put them in a vector of deposits, then the number of requirements and
+for each request, I read the request and checked what type of request it is.
+<br><br>
 
-Am decis sa fac tema in mare parte static pentru ca asa imi era mai usor, mai ales
-ca nu am observat constrangeri spre a aloca datele exculsiv dinamic.
+At e1: I used a modified version of the Dijsktra algorithm, but twice: once
+for the outgoing route, so to speak, and another for the return route.
+following this dijkstra function, I put the visited nodes in a vector, but in order
+reverse. I had to invert that vector to process and display it. then I
+made a vector of costs/distances for each node from the source (src) in which I have
+collected the respective cost on the specific position of the node and found the minimum.
+The program first displays the node for which the dijtra made a round trip, then the costs
+from the shower and from the return, then again use a kind of dijsktra to display the knots
+through which he went to calculate those costs shown previously, but this after they
+put in a vector. At the end I displayed the vector.
+<br><br>
 
+At e2: I didn't do it with kosarakju or tarjan like the majority did, but I tried one
+own version. I took each deposit from the vector of deposits and tried to
+I remove from the graph everything related to that node, then I used the traversal function
+(I'll explain what it does right away) for each deposit, then I deleted the duplicates from the vector
+cc in which the traversed nodes from the "traversal" were placed. Then from the vector cc in
+depending on how I found a node that represented a warehouse, I put the elements from the vector on
+lines, in a matrix. then I sorted each line in ascending order. if there were duplicates,
+I removed them, and at the end I displayed the lines from the matrix, only after displaying them
+the number of lines, which is, in fact, the number of connected components in the graph. The function
+"traversal" puts one node (repository) on the stack, marks it as visited, and for how long
+finds an arc (an edge) ("arch" graph function, number of nodes and respective node) of that node, searches recursively. when it has not found any more edges, it exits the recursion, removes
+the node on the stack and adds it to the vector of nodes in the related component. and at the end
+do this again.
+<br><br>
 
-Pana la rezolvarea propriu-zisa a task-urilor, am pregatit datele pentru a fi prelucrate,
-astfel: am citit pe rand numarul de noduri, numarul de muchii si apoi numarul de dpozite,
-apoi am citit cele m randuri cu nodul de pornire (u), cel de sosire (v) si costul (w).
-Pentru fiecare data citita am construit astfel matricile de adiacenta si de costuri (g
-fiind matricea de adiacenta a grafului, gr fiind o copie a sa si a fiind matricea de
-costuri, nu inainte de a fi initializate pe toate pozitiile cu 0): pentru g si gr: pe
-linia u si coloana v am pus 1 si in a pe linia u si pe coloana v am pus w. Dupa aceea, am
-citit fiecare depozit si le-am pus intr-un vector de depozite, apoi numarul de cerinte si
-pentru fiecare cerinta, am citit cerinta si am verificat ce fel de tip de cerinta e. 
-
-
-La e1: am folosit o varianta modificata a algoritmului Dijsktra, dar de doua ori: o data
-pentru traseul de dus, ca sa ma exprim astfel, iar altul pentru traseul de intors. 
-in urma aceastei functii dijkstra am pus intr-un vector nodurile vizitate, dar in ordine
-inversa. a trebuit sa inversez acel vector ca sa il prelucrez si sa il afisez. apoi am
-facut un vector de costuri/ distante pentru fiecare nod de la sursa (src) in care am
-adunat pe pozitia specifica nodului costul respectiv si am aflat minimul. 
-Programul mai intai afiseaza nodul pentru care a facut dijtra dus-intors, apoi costurile
-de la dus si de la intors, apoi foloseste iar un fel de dijsktra pentru a afisa nodurile
-prin care a trecut ca sa calculeze acele costuri afisate anterior, dar aceasta dupa ce le
-pune intr-un vector. La final am afisat vectorul. 
-
-
-La e2: nu am facut cu kosarakju sau tarjan cum a facut majoritatea, ci am incercat o
-varianta proprie. Am luat fiecare depozit din vectorul de depozite si am incercat sa
-elimin din graf tot ce avea legatura cu acel nod, apoi am folosit functia traversal
-(explin imediat ce face) pentru fiecare depozit, apoi am sters duplicatele din vectorul
-cc in care au fost puse nodurile parcurse din "traversal". Apoi din vectorul cc in
-functie de cum gaseam un nod ce reprezenta un depozit, am pus elementele din vector pe
-linii, intr-o matrice. apoi fiecare linie am sortat-o crescator. daca mai erau duplicate,
-le-am eliminat, iar la final am afisat liniile din matricea, numai dupa ce am afisat
-numarul liniilor, care e, de fapt, numarul de componente conexe din graf. Functia
-"traversal" pune pe stiva cate un nod (depozit), il marcheaza ca vizitat, si cat timp
-gaseste un arc (o muchie) (functia "arch" de graf, numar de noduri si nodul respectiv) de acel nod, cauta recursiv. cand nu a mai gasit muchie, iese din recursivitate, scoate
-nodul de pe stiva si il adauga la vectorul de noduri din componenta conexa. iar la final
-mai face inca o data acest lucru. 
-
-
-La e3: chiar daca nu da pe checker, am incercat o rezolvare proprie: am citit, in plus, r
-care e  numarul de rute (adica componente conexe de pelucrat), iar pentru fiecare am citit
-cate un k, ce e numarul de noduri din componenta, si nodurile propriu-zise, pe care le-am
-pus intr-un vector x. Am facut apoi o matrice de dimensiune 2 X k in care pe prima linie
-am pus valorile stocate in vectorul x si pe a doua linie am initializat-o cu zero pentru
-ca sa o folosesc pe post de un vector de vizitzati. am luat apoi fiecare depozit, l-am
-marcat ca fiind un start (punct de plecare) si apoi am cautat punctul de sosire 
-(da, intr-adevar trebuie sa se intoarca la acelasi depozit, dar stop-ul este, de fapt,
-nodul din componenta data care are acces la acel depozit. am adaugat la suma si costul de
-la nodul de start la nodul de stop. apoi pentru fiecare nod din vectorul x am cautat care
-e primul nod din vector nevizitat si am adaugat costul la o suma. dupa ce toate din vector
-au fost vizitate (linia doi din matricea creata la acest punct este plina cu 1) atunci
-cauta un nod care face parte din vectorul x si care are legatura cu nodul de stop. pe
-parcurs ce cauta si gaseste noduri din x care sa se apropie de stop, adauga la suma
-costul. suma finala este afisata, per depozit. deci: mai clar: ia linia start si coloana
-x[i] (0<=i<k) si verifica daca acolo e element diferit de zero. daca da, marcheaza ca
-vizitat elementuk x[i], se opreste din cautat, start-ul devine x[i], si se aduna la suma
-costul, asta pana cand toti x[i]-ii au fost vizitati. daca au fost vizitati dar nu s-a
-ajuns la nodul de stop, la fel se cauta pe linia start o coloana x[i] ce reprezinta nodul
-de stop, la fel, adunandu-se pe parcurs, costul.
-
-
+At e3: even if it doesn't show on the checker, I tried my own solution: I read, in addition, r
+what is the number of routes (that is, related components to be repaired), and for each one I have read
+one k each, what is the number of nodes in the component, and the actual nodes that I have
+placed in a vector x. I then made a matrix of size 2 X k in which on the first line
+I put the stored values in the x vector and on the second line I initialized it with zero for
+to use it as a visitor vector. I then took each deposit, I have it
+marked as a start (point of departure) and then I searched for the point of arrival
+(yes, it really has to go back to the same depot, but the stop is, in fact,
+the node in the data component that has access to that repository. I added the cost to the amount
+at the start node at the stop node. then for each node in the vector x we searched which
+it is the first node in the unvisited vector and I added the cost to an amount. after all from the vector
+were visited (line two of the matrix created at this point is filled with 1) then
+looks for a node that is part of the x vector and that is related to the stop node. on
+along the route it searches for and finds nodes in x that come close to the stop, add to the sum
+the cost. the final amount is displayed, per deposit. so: more clearly: take the start line and the column
+x[i] (0<=i<k) and check if there is an element different from zero. if yes, mark as
+visited elementuk x[i], stops searching, the start becomes x[i], and adds to the sum
+the cost, until all x[i]s have been visited. if they were visited but they were not
+reached the stop node, in the same way, a column x[i] that represents the node is searched for on the start line
+stop, as well, adding up along the way, the cost.
