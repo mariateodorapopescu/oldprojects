@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="main1.css">
+
+</head>
+<body>
+<br>
+<br>
+<h1><p style="font-size:50px">Bun venit la Chimie pentru to&#539;i!</p></h1>
+<br>
+<br>
+<div class="paragraph">
+
+<div class="mySlides fade">
+  <img src="atom.jpg" style="width:100%">
+  <div class="text"><a href="atom.html">Atomul este cea mai mic&#259; parte a materiei...</a></div>
+</div>
+
+<div class="mySlides fade">
+  <img src="invelis.png" style="width:100%">
+  <div class="text"><a href="straturi.html">Vezi lecția</a></div>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+<br>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  slides[slideIndex-1].style.display = "block";  
+}
+</script>
+
+<table style="width:100%">
+<tr>
+<th><img src="9.png" style="width:20%"></th>
+<th><img src="9.png" style="width:20%"></th>
+<th><img src="9.png" style="width:20%"></th>
+<th><img src="9.png" style="width:20%"></th>
+</tr>
+<tr>
+<th><a href="pozsis.html">Stabilirea pozi&#539;iei &#523;n sistemul periodic</a></th>
+<th><a href="nrox.html">Num&#259;rul de oxidare. Reguli la <br>stabilirea num&#259;rului de oxidare</a></th>
+<th><a href="randament.html">Rezolvarea de probleme cu randament</a></th>
+<th><a href="egalareredox.html">Egalarea ecua&#539;iilor redox</a><tr></tr>
+<tr>
+<th>Vezi lec&#539;ia</th>
+<th>Vezi lec&#539;ia</th>
+<th>Vezi lec&#539;ia</th>
+<th>Vezi lec&#539;ia</th>
+</tr>
+<tr>
+<th><a href="pozsis.html">ACCESA&#538;I</a></th>
+<th><a href="nrox.html">ACCESA&#538;I</a></th>
+<th><a href="randament.html">ACCESA&#538;I</a></th>
+<th><a href="egalareredox.html">ACCESA&#538;I</a><tr></tr>
+</tr>
+</table>            
+</div>
+</body>
+</html>
