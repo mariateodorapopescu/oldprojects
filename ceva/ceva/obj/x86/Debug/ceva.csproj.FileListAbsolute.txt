@@ -1,0 +1,8 @@
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\bin\Debug\ceva.exe
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\bin\Debug\ceva.pdb
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\obj\x86\Debug\ceva.csprojResolveAssemblyReference.cache
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\obj\x86\Debug\ceva.csproj.GenerateResource.Cache
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\obj\x86\Debug\ceva.exe
+C:\Users\ELEV\Documents\Visual Studio 2010\Projects\ceva\ceva\obj\x86\Debug\ceva.pdb
