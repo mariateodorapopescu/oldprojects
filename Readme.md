@@ -1,80 +1,80 @@
--pe langa structura data in cerinta am mai creat altele doua, 
-si anume una de a stoca un pixel din imagine, apoi una cu arborele propiu zis,
-pentru ca nu am stiut exact cum sa il parcurg fara sa-l vad ca pe o lista
-1.read:
--aceasta functie face citirea unui fisier ppm. dupa declararea imaginii, drept matrice de pixeli,
--urmeaza o serie de un fel de buffere in care voi citi metadatele. 
--deschid fisierul de intrare; daca nu l-a putut deschide, inchide programul
--urmeaza citirea header-ului
--verific corectitudinea datelor
--dupa ce am citit headerul, citesc spatiile goale si apoi trec la  citirea imaginii binare,
-alocand pe parcurs memorie pentru stocarea ei
+-besides the structure given in the request, I created two others,
+namely one to store a pixel from the image, then one with the actual tree,
+because I didn't know exactly how to go through it without seeing it like a list
+1. read:
+-this function reads a ppm file. after declaring the image as a matrix of pixels,
+-followed by a series of buffers in which I will read the metadata.
+<br>- open the input file; if he could not open it, close the program
+<br>- read the header next
+<br>- check the correctness of the data
+<br>- after reading the header, I read the empty spaces and then move on to reading the binary image,
+allocating memory along the way for its storage
 2.compress:
--aici este rezolvarea primei cerinte cu compresia imaginii
--fac trei sume, care, la inceput, sunt toate 0, cate una pentru fiecare culoare, 
-iar aceste trei sume le impart la dimesniunea (la patrat) imaginii, pentru a calcula 
-culoarea medie per componenta de culoare, iar asta pentru ca un pixel e un patrat,
-iar patratul are o arie; aria este produsul a doua laturi, egale;
--apoi calculez media/scorul cu ajutorul formulei date
--culorile medii se pun in arbore si se verifica formula cu scorul similaritatii
--daca scorul e mai mare ca pragul, se divide in continuare
--daca nu se mai poate divide, atunci e frunza, prin urmare toate legaturile sunt nule
-3.ptr:
--fac un vector de legaturi ca sa stiu unde anume pun pixelii
--cat timp mai are de parcurs in arborele de compresie fac loc pentru o noua legatura,
--pun ce a ramas din arbore acolo, spun al catalea nod e si trec la urmatoarul nod
--parcurg conform cerintei, (in sensul acelor de ceasornic) recursiv, pana la frunze
+<br>- here is the solution to the first requirement with image compression
+-I make three sums, which, at the beginning, are all 0, one for each color,
+and I divide these three sums by the size (squared) of the image, to calculate
+the average color per color component, and that's because a pixel is a square,
+and the square has an area; area is the product of two equal sides;
+-then I calculate the average/score using the given formula
+<br>- the middle colors are placed in the tree and the formula is checked with the similarity score
+<br>- if the score is higher than the threshold, it is further divided
+<br>- if it can no longer be divided, then it is a leaf, therefore all links are null
+3. for:
+<br>- I make a vector of connections so that I know exactly where to put the pixels
+-how much time is left to travel in the compression shaft to make room for a new connection,
+-put what's left of the tree there, say the next node is and move on to the next node
+<br>- go through as required, (clockwise) recursively, until the leaves
 4.createvector:
--se parcurge arborele de compresie
--al i-ulea nod din arbore primeste datele respective
--pun culorile care sa formeze ce e comprimat in si dimensiunea blocului
--daca nu e frunza -> se ia pe cazuri pentru toate cele 4 sectiuni, 
-ii pun nr de ordine, altfel il marchez ca fiind frunza
+<br>- the compression shaft is traversed
+-the i-th node in the tree receives the respective data
+<br>- I put the colors to form what is compressed in the size of the block
+<br>- if there is no leaf -> it is taken on a case by case basis for all 4 sections,
+I put an order number on it, otherwise I mark it as a leaf
 5.createtree:
--aloc arborele de compresie si iau din vector culoarea potrivita ca sa o pun in arbore,
-inclusiv dimensiunea pe care e
--daca nu e frunza, mai bine zis atata timp cat nu e frunza, merg mai departe, 
-recursiv, nu neaparat in ordine
--daca s-a ajuns la frunza, adica acolo unde e -1 la zona/legatura,
-atunci legaturile din nodul respectiv din arbore sunt nule, nemaiavnd altundeva unde sa se duca
-6.decompress:
--atata timp cat nu e frunza (e marcata cu -1), reformeaza imaginea in binar,
-in matricea in care tine imaginea
-for-urile se deplaseaza cat e dimensiunea imaginii, (area din structura de arbore), 
-mai ales ca de obicei x si y (de unde se porneste) se iau zero, la apel (stanga,sus)
--se ia pe cazuri, pe culori;
--se percurge recursiv vectorul de compresie, refacand imaginea progresiv, mai ales ca
-tot asa, se ia pe patrimi, in ordinea specificata in enunt
--mereu se injumatateste si se aduna, ca imaginea e impartita
-in patru, deci dimesniunea unei linii, cum ar veni, ar fi jumtate 
-6.write:
--aceasta functie scrie imaginea noua in fisierul out
--scriu elementele duin imagine in ordine: formatul (stiu deja ca e P6); dimensiunile 
-(in general, am vazut ca e o imagine-patrat), deci, nu conteaza care dintre 
-lungime sau latime iau; numarul de pixeli rgb, de obicei 255
--scriu binar imaginea linie cu linie, iar ala final nu uit sa inchid fisierul
-7.vertically:
-daca nu e frunza, sau mai bine zis atata timp cat nu e frunza, pentru ca aceasta
-este conditia de oprire la recursivitate
--se parcurge pana la frunze, in ordinea din enunt (ca un fel de ace de ceasornic),
-se foloseste un nod ajutator care va fi folosit la interschombarea dintre nodurile arborelui,
-mai exact la interschimbrea nodului stanga sus cu cel stanga-jos si dreapta-jos cu cel
-drepta-sus pentru ca se face schimbare stanga dreapta,
-fiind o rasucire verticala a imaginii, apoi se face schimbul, pe rand, dar se
-revine din recursivitate de fiecare bloc.
+<br>- allocate the compression tree and take the right color from the vector to put it in the tree,
+including the size it is
+<br>- if there is no leaf, better said as long as there is no leaf, I move on,
+recursively, not necessarily in order
+<br>- if the leaf has been reached, i.e. where there is -1 in the area/link,
+then the links in the respective node in the tree are null, having nowhere else to go
+6. decompress:
+<br>- as long as it is not a leaf (it is marked with -1), reformat the image in binary,
+in the matrix that holds the image
+the forces move as much as the size of the image, (the area in the tree structure),
+especially since usually x and y (from where it starts) are taken as zero, when calling (left, top)
+<br>- it is taken by cases, by colors;
+<br>- the compression vector is traversed recursively, recreating the image progressively, especially as
+likewise, it is taken in quarters, in the order specified in the statement
+-always halve and add, as the image is divided
+in four, so the size of a line, as it were, would be half
+6. write:
+<br>- this function writes the new image in the out file
+-write the elements of the image in order: the format (I already know it's P6); dimensions
+(in general, I saw that it's a square image), so it doesn't matter which one
+length or width take; the number of rgb pixels, usually 255
+-I write the binary image line by line, and I don't forget to close the file at the end
+7. vertically:
+if it is not a leaf, or rather as long as it is not a leaf, because this
+is the stopping condition for recursion
+<br>- it is completed up to the leaves, in the order listed (like the hands of a clock),
+a helper node is used which will be used to exchange between the nodes of the tree,
+more precisely at the interchange of the upper left node with the lower left one and the lower right node with the one
+right-up because left-right change is made,
+being a vertical twist of the image, then the change is made, in turn, but se
+recursively returns from each block.
 8.horizontally:
--se procedeaza asemanator ca la horizontally, doar ca se schimba nodurile din
-blocurile stanga sus cu cel drepta-sus si stanga jos cu cel drepta-jos 
+<br>- the procedure is similar to horizontally, except that the nodes from
+the upper-left blocks with the upper-right one and the lower-left blocks with the lower-right one
 9.deallocate:
--free recursiv la blocuri, incepand de jos-stanga si merge invers pana se elibereaza tot
+-free recursively to the blocks, starting from the bottom-left and going in reverse until everything is freed
 10.main:
--daca se doreste compresie: dupa ce declar cam tot ce am nevoie, initilizez arborele de compresie. 
-dupa ce citesc imaginea si factorul de compresie, date ca argumente, folosesc functia compress, 
-apoi aloc vectorul de compresie si pun datele in el. apoi eliberez ce am alocat pana acum. 
--daca se doreste decompresie:
-citesc nr de culori, nr noduri,vectorul de culori, initializez arborele si pun datele in el.
-toate acestea le fac cu functiile createtree si decompress; eliberez vectorul;
-iau dimensiunea imaginii din arbore, aloc memeorie pentru imagine si abia acum scriu imaginea.
--daca se doreste oglindirea imaginii: dupa ce se comprima imaginea, se verifica ce fel de
-rasucire se doreste si, in functie de aceasta, se folosesc functiile horizontally si vertically.
-decomprim si scriu imaginea noua, iar la final eliberez ce am alocat;
+-if compression is desired: after I declare almost everything I need, I initialize the compression tree.
+after reading the image and the compression factor, given as arguments, I use the compress function,
+then I allocate the compression vector and put the data in it. then I release what I have allocated so far.
+<br>- if decompression is desired:
+I read the number of colors, the number of nodes, the color vector, initialize the tree and put the data in it.
+I do all this with the createtree and decompress functions; release the vector;
+I take the size of the image from the tree, allocate memory for the image and only now write the image.
+<br>- if you want to mirror the image: after compressing the image, check what kind of
+twist is desired and, depending on this, the horizontally and vertically functions are used.
+I decompress and write the new image, and finally free what I have allocated. 
